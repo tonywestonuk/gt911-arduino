@@ -1,6 +1,6 @@
 
-#ifndef TAMC_GT911_H
-#define TAMC_GT911_H
+#ifndef GT911_LITE_H
+#define GT911_LITE_H
 
 #include "Arduino.h"
 #include <Wire.h>
@@ -30,9 +30,9 @@ class TP_Point {
     uint16_t size;
 };
 
-class TAMC_GT911 {
+class GT911_Lite {
   public:
-    TAMC_GT911();
+    GT911_Lite();
     void begin(TwoWire *wire);
     bool read(void);
 
@@ -60,4 +60,4 @@ class TAMC_GT911 {
     TwoWire *_wire;
 };
 
-#endif // TAMC_GT911_H
+#endif // GT911_LITE_H

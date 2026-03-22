@@ -1,4 +1,4 @@
-#include "TAMC_GT911.h"
+#include "gt911_lite.h"
 #include "Wire.h"
 
 #define TOUCH_SDA  39
@@ -6,7 +6,7 @@
 #define TOUCH_INT  3
 #define TOUCH_RST  26
 
-TAMC_GT911 tp;
+GT911_Lite tp;
 
 TwoWire wire(0);
 

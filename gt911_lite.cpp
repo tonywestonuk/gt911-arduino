@@ -1,12 +1,12 @@
 #include "Arduino.h"
-#include "TAMC_GT911.h"
+#include "gt911_lite.h"
 
 #include <Wire.h>
 
-TAMC_GT911::TAMC_GT911() {
+GT911_Lite::GT911_Lite() {
 }
 
-void TAMC_GT911::begin(TwoWire *wire) {
+void GT911_Lite::begin(TwoWire *wire) {
   _wire = wire;
 
   _wire->beginTransmission(GT911_ADDR1);
@@ -26,7 +26,7 @@ void TAMC_GT911::begin(TwoWire *wire) {
 }
 
 
-bool TAMC_GT911::read() {
+bool GT911_Lite::read() {
   uint8_t pointInfo = readByteData(GT911_POINT_INFO);
   uint8_t bufferStatus = (pointInfo >> 7) & 1;
   if (!bufferStatus) {
@@ -69,7 +69,7 @@ bool TAMC_GT911::read() {
 }
 
 
-TP_Point TAMC_GT911::readPoint(uint8_t *data) {
+TP_Point GT911_Lite::readPoint(uint8_t *data) {
   uint8_t id = data[0];
   uint16_t x = data[1] + (data[2] << 8);
   uint16_t y = data[3] + (data[4] << 8);
@@ -79,7 +79,7 @@ TP_Point TAMC_GT911::readPoint(uint8_t *data) {
   return TP_Point(id, x, y, size);
 }
 
-void TAMC_GT911::writeByteData(uint16_t reg, uint8_t val) {
+void GT911_Lite::writeByteData(uint16_t reg, uint8_t val) {
   _wire->beginTransmission(addr);
   _wire->write(highByte(reg));
   _wire->write(lowByte(reg));
@@ -87,7 +87,7 @@ void TAMC_GT911::writeByteData(uint16_t reg, uint8_t val) {
   _wire->endTransmission();
 }
 
-uint8_t TAMC_GT911::readByteData(uint16_t reg) {
+uint8_t GT911_Lite::readByteData(uint16_t reg) {
   _wire->beginTransmission(addr);
   _wire->write(highByte(reg));
   _wire->write(lowByte(reg));
@@ -99,7 +99,7 @@ uint8_t TAMC_GT911::readByteData(uint16_t reg) {
   return _wire->read();
 }
 
-void TAMC_GT911::readBlockData(uint16_t reg, uint8_t *buf, uint8_t size) {
+void GT911_Lite::readBlockData(uint16_t reg, uint8_t *buf, uint8_t size) {
   _wire->beginTransmission(addr);
   _wire->write(highByte(reg));
   _wire->write(lowByte(reg));
