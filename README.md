@@ -30,13 +30,13 @@ Copy the library folder into your Arduino `libraries` directory, or add it as a 
 ## Usage
 
 ```cpp
-#include "TAMC_GT911.h"
+#include "gt911_lite.h"
 #include "Wire.h"
 
 #define TOUCH_SDA 39
 #define TOUCH_SCL 40
 
-TAMC_GT911 tp;
+GT911_Lite tp;
 TwoWire wire(0);
 
 void setup() {
