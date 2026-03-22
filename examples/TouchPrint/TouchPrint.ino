@@ -1,4 +1,4 @@
-#include "gt911_lite.h"
+#include <gt911_lite.h>
 #include "Wire.h"
 
 #define TOUCH_SDA  39
